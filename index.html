@@ -23,11 +23,10 @@
     
     <div class="container" >
       <div class = "row">
-        <div class = "col-md-12">
-            <h4 class ="bold" style="color:rgb(12, 12, 12)"</h4>
-            <p>Please use the interactive charts to select your participant ID number from the dropdown menu.<br> <br>These charts will show 
-              you which bacterial species live in your navel. </p>
-            <br>
+        <div class = "col-md-12 jumbotron text-center text-white">
+            <h3 class ="bold" style="color:rgb(12, 12, 12)"></h3>
+            <h3>Select your Test Subject ID No. from the dropdown menu.</h3>
+            <h3>Charts below will show you which bacterial species live in your navel.</h3>
         </div>
       </div>
 
@@ -35,7 +34,7 @@
       <div class="col-md-2">
         <!-- dropdown header and menu-->
         <div class="well">
-          <h5 style="color: rgb(55, 56, 55)">Test Subject ID No.:</h5>
+          <h3 style="color: rgb(55, 56, 55)">Test Subject ID No.:</h3>
           
           <!-- dropdown menu that calls the optionChanged function-->
           <select id="selDataset" onchange="optionChanged(this.value)"></select>

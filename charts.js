@@ -58,7 +58,6 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
-    console.log(data)
     // 3. Create a variable that holds the samples array. 
     var sampleArray = data.samples;
     console.log(sampleArray)
@@ -98,11 +97,25 @@ function buildCharts(sample) {
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "Top 10 Bacteria Cultures Found",
-      titlefont:{"size": 30}
+      yaxis:{
+        tickmode: "array",
+        tickvals: [0,1,2,3,4,5,6,7,8,9],
+        ticktext: yticks
+      },
+      annotations: [{
+        xref: 'paper',
+        yref: 'paper',
+        x: 0.5,
+        xanchor: 'center',
+        y: -0.25,
+        yanchor: 'center',
+        text: 'The bar chart displays the top 10 bacterial species (OTUs) <br> with the number of samples found in your belly button per sample',
+        showarrow: false
+      }]   
     };
 
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", barData, barLayout);
+    Plotly.newPlot("bar", barData, barLayout,{responsive: true});
 
 // DELIVERABLE 2: BUBBLE CHART
     // 1. Create the trace for the bubble chart.
@@ -120,46 +133,70 @@ function buildCharts(sample) {
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: "Bacteria Species per Sample",
-      xaxis: {title: "OTU ID"},
+      xaxis: {title: "OTU ID",automargin:true},
+      yaxis: {automargin:true},
       hovermode: "closest",
-      showlegend: false
+      showlegend: false,
+      text:"This is a bubble graph representation of the bar graph above.  <br> This showcases the bacteria present per sample"
     };
 
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
-
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout,{responsive:true}); 
 
 
 // DELIVERABLE 3: GAUGE CHART
+// 1. Create a variable that filters the metadata array for the object with the desired sample number.
+var metadata_ID = data.metadata.filter(data => data.id ==sample);
+
+// 2. Create a variable that holds the first sample in the metadata array.
+var firstmetadata_ID = metadata_ID[0];
+console.log(firstmetadata_ID)
+
+// 3. Create a variable that holds the washing frequency.
+var washFreq = firstmetadata_ID.wfreq;
+
 // 4. Create the trace for the gauge chart.
-var gaugeData = [{
-  domain: {x: [0,1], y: [0,1]},
-  value: wfreq,
-  title: {text: "Belly Button Washing Frequency <br> Scrubs per Week"},
-  type: "indicator",
-  mode: "gauge+number",
-  gauge: {
-    axis: {range: [null,10]},
-    bar: {color: "black"},
-    steps: [
-      {range: [0, 2], color: "red"},
-      {range: [2, 4], color: "orange"},
-      {range: [4, 6], color: "yellow"},
-      {range: [6, 8], color: "lightgreen"},
-      {range: [8, 10], color: "green"}]
-    }   
-  }
+var gaugeData = [
+  {
+    domain:{x:[0,1], y:[0,1]},
+    value: washFreq,
+    title:{ text: "<b> Belly Button Washing Frequency</b><br> Washes per week"},
+    type:"indicator",
+    mode: "gauge+number",
+    gauge: {
+      axis:{
+        range:[null, 10],
+        tickmode: "array",
+        tickvals:[0,2,4,6,8,10],
+        ticktext: [0,2,4,6,8,10]
+      },
+      bar:{color:"black"},
+      steps: [
+        {range:[0,2], color:"red"},
+        {range:[2,4], color: "orange"},
+        {range: [4,6], color: "yellow"},
+        {range: [6,8], color: "lime"},
+        {range: [8,10],color: "green"}]
+    }
+  }    
 ];
 
 // 5. Create the layout for the gauge chart.
-var gaugeLayout = {  
-  width: 500,
-  height: 460,
-  margin: {t: 0, b: 0}
+var gaugeLayout = { 
+  autosize: true, 
+  annotations: [{
+    xref: 'paper',
+    yref: 'paper',
+    x:0.5,
+    xanchor: 'center',
+    y:0,
+    yanchor: 'center',
+    text: "This gauge displays frequency of weekly belly button washing",
+    showarrow: false
+  }]
 };
 
 // 6. Use Plotly to plot the gauge data and layout.
 Plotly.newPlot("gauge", gaugeData, gaugeLayout);
-
-  });
-}
+  })
+};
