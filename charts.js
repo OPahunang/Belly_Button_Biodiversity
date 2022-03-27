@@ -1,4 +1,4 @@
-// at VS terminal run ---> 'python -m http.server' at the web localhost:8000
+// first at VS terminal run ---> 'python -m http.server' and at the web go to 'localhost:8000'
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -109,7 +109,7 @@ function buildCharts(sample) {
         xanchor: 'center',
         y: -0.25,
         yanchor: 'center',
-        text: 'The bar chart displays the top 10 bacterial species (OTUs) <br> with the number of samples found in your belly button per sample',
+        text: 'Bar chart above displays top 10 bacterial species (OTUs) <br> in your belly button per sample',
         showarrow: false
       }]   
     };
@@ -136,8 +136,8 @@ function buildCharts(sample) {
       xaxis: {title: "OTU ID",automargin:true},
       yaxis: {automargin:true},
       hovermode: "closest",
-      showlegend: false,
-      text:"This is a bubble graph representation of the bar graph above.  <br> This showcases the bacteria present per sample"
+      text:'Bubble graph above showcases <br> the bacteria present per sample',
+      showlegend: false
     };
 
     // 3. Use Plotly to plot the data with the layout.
@@ -191,7 +191,7 @@ var gaugeLayout = {
     xanchor: 'center',
     y:0,
     yanchor: 'center',
-    text: "This gauge displays frequency of weekly belly button washing",
+    text: 'Gauge above displays frequency of weekly belly button washing',
     showarrow: false
   }]
 };
