@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bellybutton Biodiversity</title>
+  
+  <!-- for bootsrap styling-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <!-- for css styling-->
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center text-white" style="background-image: linear-gradient(to left,rgba(197, 201, 201, 0.63), rgba(28, 196, 187, 0.63)) ">
+        <h1>Belly Button Biodiversity</h1>
+        <h2>Dashboard</h2>
+        
+      </div>
+    </div>
+    
+    <div class="container" >
+      <div class = "row">
+        <div class = "col-md-12">
+            <h4 class ="bold" style="color:rgb(12, 12, 12)"</h4>
+            <p>Please use the interactive charts to select your participant ID number from the dropdown menu.<br> <br>These charts will show 
+              you which bacterial species live in your navel. </p>
+            <br>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <!-- dropdown header and menu-->
+        <div class="well">
+          <h5 style="color: rgb(55, 56, 55)">Test Subject ID No.:</h5>
+          
+          <!-- dropdown menu that calls the optionChanged function-->
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+        
+        <!--panel division-element has a header and the sample info-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title" style="color: rgb(55, 56, 55)">Demographic Info</h3>
+          </div>
+          
+          <!--informion panel stores sample meta data-->
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="charts.js"></script>
+
+</body>
+
+</html>
