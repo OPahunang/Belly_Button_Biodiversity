@@ -1,4 +1,4 @@
-// go to project directory and run in anaconda prompt ---> 'python -m http.server'
+// at VS terminal run ---> 'python -m http.server' at the web localhost:8000
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -103,8 +103,6 @@ function buildCharts(sample) {
 
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
-  });
-}
 
 // DELIVERABLE 2: BUBBLE CHART
     // 1. Create the trace for the bubble chart.
@@ -163,3 +161,5 @@ var gaugeLayout = {
 // 6. Use Plotly to plot the gauge data and layout.
 Plotly.newPlot("gauge", gaugeData, gaugeLayout);
 
+  });
+}
